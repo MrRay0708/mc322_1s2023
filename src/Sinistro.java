@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Sinistro {
 	private int id ;
 	private String data ;
@@ -5,33 +7,40 @@ public class Sinistro {
 
 	// Construtor
 	public Sinistro ( int id , String data , String endereco ) {
-	this . id = id ;
-	this . data = data ;
-	this . endereco = endereco ;
+		this . id = id ;
+		this . data = data ;
+		this . endereco = endereco ;
 	}
 
 	// Getters e setters
 	public int getId () {
-	return id ;
-	}
+		return id ;
+	}	
 	
 	public void setId ( int id ) {
-	this . id = id ;
+		this . id = id ;
 	}
 	
 	public String getData () {
-	return data ;
+		return data ;
 	}
 	
 	public void setData ( String data ) {
-	this . data = data ;
+		this . data = data ;
 	}
 	
 	public String getEndereco () {
-	return endereco ;
+		return endereco ;
 	}
 	
 	public void setEndereco ( String endereco ) {
-	this . endereco = endereco ;
+		this . endereco = endereco ;
+	}
+	
+	// Método de geração de Id
+	public int buildId () {
+		Random variavel = new Random() ;
+		this. id = variavel.nextInt() ;
+		return id ;
 	}
 }

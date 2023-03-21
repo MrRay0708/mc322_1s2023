@@ -6,33 +6,33 @@ public class Veículo {
 	
 	// Construtor
 	public Veículo ( String placa, String marca, String modelo) {
-	this . placa = placa;
-	this . marca = marca;
-	this . modelo = modelo;
+		this . placa = placa;
+		this . marca = marca;
+		this . modelo = modelo;
 	}
 	
 	// Getters e setters
 	public String getPlaca () {
-	return placa ;
+		return placa ;
 	}
 	
 	public void setPlaca ( String placa ) {
-	this . placa = placa ;
+		this . placa = placa ;
 	}
 	
 	public String getMarca () {
-	return marca ;
+		return marca ;
 	}
 	
 	public void setMarca ( String marca ) {
-	this . marca = marca ;
+		this . marca = marca ;
 	}
 	
 	public String getModelo () {
-	return modelo ;
+		return modelo ;
 	}
 	
 	public void setModelo ( String modelo ) {
-	this . modelo = modelo ;
+		this . modelo = modelo ;
 	}
 }
