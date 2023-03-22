@@ -58,7 +58,9 @@ public class Cliente {
 	
 	// Checagem de dados
 	public String toString () {
-		return nome ;
+		String dados ;
+		dados = String.format( "Nome: %s\nCPF: %s\nData de nascimento: %s\nIdade: %d\nEndereço: %s\n", this.nome, this.cpf, this.dataNascimento, this.endereco, this.idade );
+		return dados ;
 	}
 	
 	// Validador de cpf

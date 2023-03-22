@@ -1,6 +1,5 @@
-import java.util.Random;
-
 public class Sinistro {
+	private static int marcador = 0 ;
 	private int id ;
 	private String data ;
 	private String endereco ;
@@ -39,8 +38,8 @@ public class Sinistro {
 	
 	// Método de geração de Id
 	public int buildId () {
-		Random variavel = new Random() ;
-		this. id = variavel.nextInt() ;
+		marcador += 1 ;
+		this. id = marcador ;
 		return id ;
 	}
 }
