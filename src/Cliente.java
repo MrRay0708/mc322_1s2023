@@ -58,20 +58,21 @@ public class Cliente {
 	
 	// Checagem de dados
 	public String toString () {
-		String dados ;
-		dados = String.format( "Nome: %s\nCPF: %s\nData de nascimento: %s\nIdade: %d\nEndereço: %s\n", this.nome, this.cpf, this.dataNascimento, this.endereco, this.idade );
+		String dados = "" ;
+		dados += "Nome: " + getNome() + "\nCPF: " + getCpf() + "\nData de nascimento: " + getDataNascimento() + "\nIdade: " + getIdade() + "\nEndereço: " + getEndereco() ;
 		return dados ;
 	}
 	
 	// Validador de cpf
 	public boolean validadorCPF ( String cpf ) {
 		boolean veredito = false ;
-		char primeiroDigito = cpf.charAt(9) ; 
-		char segundoDigito = cpf.charAt(10) ;
+		String intCpf = cpf.replaceAll("[^0-9]", "") ;
+		char primeiroDigito = intCpf.charAt(9) ; 
+		char segundoDigito = intCpf.charAt(10) ;
 		int somatorio = 0 ;
 		// Cálculo do primeiro digito
-		for ( int manipulador = 8 ; manipulador == 0 ; manipulador-- ) {
-			somatorio += ( manipulador + 2 ) * ( cpf.charAt(8 - manipulador) );
+		for ( int manipulador = 8 ; manipulador != -1 ; manipulador-- ) {
+			somatorio += ( manipulador + 2 ) * ( intCpf.charAt(8 - manipulador) - '0');
 		}
 		somatorio = somatorio%11 ;
 		// Ajustes
@@ -82,15 +83,14 @@ public class Cliente {
 			somatorio = 11 - somatorio ; 
 		}
 		// Verificação
-		if ( somatorio != primeiroDigito ) {
+		if ( somatorio != primeiroDigito - '0' ) {
 			return veredito ;
 		}
 		// Cálculo do segundo digito
 		somatorio = 0 ;
-		for ( int manipulador = 8 ; manipulador == 0 ; manipulador-- ) {
-			somatorio += ( manipulador + 3 ) * ( cpf.charAt(8 - manipulador) );
+		for ( int manipulador = 9 ; manipulador != 0 ; manipulador-- ) {
+			somatorio += ( manipulador + 1 ) * ( intCpf.charAt(10 - manipulador) - '0');
 		}
-		somatorio += primeiroDigito * 2 ;
 		somatorio = somatorio%11 ;
 		// Ajustes
 		if ( somatorio < 2) {
@@ -100,8 +100,8 @@ public class Cliente {
 			somatorio = 11 - somatorio ; 
 		}
 		// Verificação
-		if ( somatorio != segundoDigito ) {
-			return veredito ;
+		if ( somatorio != segundoDigito - '0' ) {
+			return veredito ; 
 		}
 		veredito = true ;
 		return veredito ;
