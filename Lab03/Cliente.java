@@ -1,18 +1,16 @@
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Cliente {
 	private String nome ;
-	private String cpf ;
-	private String dataNascimento ;
 	private String endereco ;
-	private int idade ;
+	private ArrayList<Veículo> listaVeículos ;
 
 	// Construtor
-	public Cliente ( String nome , String cpf , String dataNascimento , String endereco , int idade ) {
-		this . nome = nome ;
-		this . cpf = cpf ;
-		this . dataNascimento = dataNascimento ;
-		this . endereco = endereco ;
-		this . idade = idade ;
+	public Cliente(String nome, String endereco, ArrayList<Veículo> listaVeículos) {
+		this.nome = nome;
+		this.endereco = endereco;
+		this.listaVeículos = listaVeículos;
 	}
 
 	// Getters e setters
@@ -24,22 +22,6 @@ public class Cliente {
 		this . nome = nome ;
 	}
 	
-	public String getCpf () {
-		return cpf ;
-	}
-	
-	public void setCpf ( String cpf ) {
-		this . cpf = cpf ;
-	}
-	
-	public String getDataNascimento () {
-		return dataNascimento ;
-	}
-	
-	public void setDataNascimento ( String dataNascimento ) {
-		this . dataNascimento = dataNascimento ;
-	}
-	
 	public String getEndereco () {
 		return endereco ;
 	}
@@ -48,63 +30,19 @@ public class Cliente {
 		this . endereco = endereco ;
 	}
 	
-	public int getIdade () {
-		return idade ;
+	public ArrayList<Veículo> getListaVeículos() {
+		return listaVeículos;
 	}
-	
-	public void setIdade ( int idade ) {
-		this . idade = idade ;
+
+	public void setListaVeículos(ArrayList<Veículo> listaVeículos) {
+		this.listaVeículos = listaVeículos;
 	}
-	
+
 	// Checagem de dados
 	public String toString () {
 		String dados = "" ;
-		dados += "Nome: " + getNome() + "\nCPF: " + getCpf() + "\nData de nascimento: " + getDataNascimento() + "\nIdade: " + getIdade() + "\nEndereço: " + getEndereco() ;
+		dados += "Nome: " + getNome() + "\nGênero: " + getGenero() + "\nClasse econômica: " + getClasseEconomica() + "\nEndereço: " + getEndereco() + "\nData da licença: " + getDataLicenca() +  "\nEducação: " + getEducacao() ;
 		return dados ;
-	}
-	
-	// Validador de cpf
-	public boolean validadorCPF ( String cpf ) {
-		boolean veredito = false ;
-		String intCpf = cpf.replaceAll("[^0-9]", "") ;
-		char primeiroDigito = intCpf.charAt(9) ; 
-		char segundoDigito = intCpf.charAt(10) ;
-		int somatorio = 0 ;
-		// Cálculo do primeiro digito
-		for ( int manipulador = 8 ; manipulador != -1 ; manipulador-- ) {
-			somatorio += ( manipulador + 2 ) * ( intCpf.charAt(8 - manipulador) - '0');
-		}
-		somatorio = somatorio%11 ;
-		// Ajustes
-		if ( somatorio < 2) {
-			somatorio = 0 ;
-		}
-		else {
-			somatorio = 11 - somatorio ; 
-		}
-		// Verificação
-		if ( somatorio != primeiroDigito - '0' ) {
-			return veredito ;
-		}
-		// Cálculo do segundo digito
-		somatorio = 0 ;
-		for ( int manipulador = 9 ; manipulador != 0 ; manipulador-- ) {
-			somatorio += ( manipulador + 1 ) * ( intCpf.charAt(10 - manipulador) - '0');
-		}
-		somatorio = somatorio%11 ;
-		// Ajustes
-		if ( somatorio < 2) {
-			somatorio = 0 ;
-		}
-		else {
-			somatorio = 11 - somatorio ; 
-		}
-		// Verificação
-		if ( somatorio != segundoDigito - '0' ) {
-			return veredito ; 
-		}
-		veredito = true ;
-		return veredito ;
 	}
 	
 }

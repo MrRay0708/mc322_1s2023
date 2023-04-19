@@ -1,14 +1,26 @@
+import java.time.LocalDate;
+import java.util.ArrayList;
 
-public class ClientePF {
+public class ClientePF extends Cliente{
 	private String cpf ;
 	private int dataNascimento ;
+	private LocalDate dataLicenca ;
+	private String educacao ;
+	private String genero ;
+	private String classeEconomica ;
 	
 	// Construtor
-	public ClientePF ( String cpf , int dataNascimento ) {
+	public ClientePF(String nome, String endereco, ArrayList<Veículo> listaVeículos, String genero, String classeEconomica, String educacao,
+			LocalDate dataLicenca, String cpf , int dataNascimento) {
+		super(nome, endereco, listaVeículos);
+		this.genero = genero;
+		this.classeEconomica = classeEconomica;
+		this.educacao = educacao;
+		this.dataLicenca = dataLicenca;
 		this . cpf = cpf ;
 		this . dataNascimento = dataNascimento ;
 	}
-	
+
 	// Getters e setters
 	public String getCpf () {
 		return cpf ;
@@ -26,11 +38,42 @@ public class ClientePF {
 		this . dataNascimento = dataNascimento ;
 	}
 	
-	// Checagem de dados
-	public String toString () {
-		String dados = "" ;
-		dados += "Cpf: " + getCpf() + "\nData de fundação: " + getDataNascimento() ;
-		return dados ;
+	public String getGenero () {
+		return genero ;
+	}
+	
+	public void setGenero ( String genero ) {
+		this . genero = genero ;
+	}
+	
+	public String getClasseEconomica () {
+		return classeEconomica ;
+	}
+	
+	public void setClasseEconomica ( String classeEconomica ) {
+		this . classeEconomica = classeEconomica ;
+	}
+	
+	public String getEducacao () {
+		return educacao ;
+	}
+	
+	public void setEducacao ( String educacao ) {
+		this . educacao = educacao ;
+	}
+	
+	public LocalDate getDataLicenca () {
+		return dataLicenca ;
+	}
+	
+	public void setDataLicenca ( LocalDate dataLicenca ) {
+		this . dataLicenca = dataLicenca ;
+	}
+	
+	// Checagem de Dados
+	public String toString() {
+		return "ClientePF [Cpf: " + cpf + " /nDataNascimento: " + dataNascimento + " /nDataLicenca: " + dataLicenca
+				+ " /nEducacao: " + educacao + " /nGenero: " + genero + " /nClasseEconomica: " + classeEconomica + "]";
 	}
 	
 	// Validador de cpf

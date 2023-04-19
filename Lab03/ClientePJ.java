@@ -1,14 +1,16 @@
+import java.util.ArrayList;
 
-public class ClientePJ {
+public class ClientePJ extends Cliente{
 	private String cnpj ;
 	private int dataFundacao ;
 	
 	// Construtor
-	public ClientePJ ( String cnpj , int dataFundacao ) {
+	public ClientePJ(String nome, String endereco, ArrayList<Veículo> listaVeículos, String cnpj , int dataFundacao ) {
+		super(nome, endereco, listaVeículos);
 		this . cnpj = cnpj ;
 		this . dataFundacao = dataFundacao ;
 	}
-	
+
 	// Getters e setters
 	public String getCnpj () {
 		return cnpj ;
@@ -37,12 +39,18 @@ public class ClientePJ {
 	public boolean validadorCnpj ( String cnpj ) {
 		boolean veredito = false ;
 		String intCnpj = cnpj.replaceAll("[^0-9]", "") ;
-		char primeiroDigito = intCnpj.charAt(9) ; 
-		char segundoDigito = intCnpj.charAt(10) ;
+		char primeiroDigito = intCnpj.charAt(12) ; 
+		char segundoDigito = intCnpj.charAt(13) ;
 		int somatorio = 0 ;
+		int contador = 0 ;
 		// Cálculo do primeiro digito
-		for ( int manipulador = 8 ; manipulador != -1 ; manipulador-- ) {
-			somatorio += ( manipulador + 2 ) * ( intCnpj.charAt(8 - manipulador) - '0');
+		for ( int manipulador = 5 ; contador != 11 ; manipulador-- ) {
+			if ( contador == 4 ) {
+				manipulador = 9 ;
+			}
+			somatorio += ( manipulador ) * ( intCnpj.charAt( contador ) - '0');
+			contador += 1 ;
+			
 		}
 		somatorio = somatorio%11 ;
 		// Ajustes
@@ -58,8 +66,14 @@ public class ClientePJ {
 		}
 		// Cálculo do segundo digito
 		somatorio = 0 ;
-		for ( int manipulador = 9 ; manipulador != 0 ; manipulador-- ) {
-			somatorio += ( manipulador + 1 ) * ( intCnpj.charAt(10 - manipulador) - '0');
+		contador = 0 ;
+		for ( int manipulador = 6 ; contador != 11 ; manipulador-- ) {
+			if ( contador == 5 ) {
+				manipulador = 9 ;
+			}
+			somatorio += ( manipulador ) * ( intCnpj.charAt( contador ) - '0');
+			contador += 1 ;
+			
 		}
 		somatorio = somatorio%11 ;
 		// Ajustes

@@ -3,12 +3,19 @@ public class Sinistro {
 	private int id ;
 	private String data ;
 	private String endereco ;
+	private Seguradora seguradora ;
+	private Veículo veiculo ;
+	private Cliente cliente ;
 
 	// Construtor
-	public Sinistro ( int id , String data , String endereco ) {
-		this . id = id ;
-		this . data = data ;
-		this . endereco = endereco ;
+	public Sinistro(int id, String data, String endereco, Seguradora seguradora, Veículo veiculo, Cliente cliente) {
+		super();
+		this.id = id;
+		this.data = data;
+		this.endereco = endereco;
+		this.seguradora = seguradora;
+		this.veiculo = veiculo;
+		this.cliente = cliente;
 	}
 
 	// Getters e setters
@@ -36,10 +43,40 @@ public class Sinistro {
 		this . endereco = endereco ;
 	}
 	
+	public Seguradora getSeguradora() {
+		return seguradora;
+	}
+
+	public void setSeguradora(Seguradora seguradora) {
+		this.seguradora = seguradora;
+	}
+
+	public Veículo getVeiculo() {
+		return veiculo;
+	}
+
+	public void setVeiculo(Veículo veiculo) {	 
+		this.veiculo = veiculo;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 	// Método de geração de Id
 	public int buildId () {
 		marcador += 1 ;
 		this. id = marcador ;
 		return id ;
+	}
+	
+	// Checagem de Dados
+	public String toString() {
+		return "Sinistro [Id: " + id + "\nData: " + data + "\nEndereco: " + endereco + "\nSeguradora: " + seguradora
+				+ "\nVeículo: " + veiculo + "\nCliente: " + cliente + "]";
 	}
 }
