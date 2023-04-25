@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class ClientePF extends Cliente{
 	private String cpf ;
-	private int dataNascimento ;
+	private String dataNascimento ;
 	private LocalDate dataLicenca ;
 	private String educacao ;
 	private String genero ;
@@ -11,7 +11,7 @@ public class ClientePF extends Cliente{
 	
 	// Construtor
 	public ClientePF(String nome, String endereco, ArrayList<Veículo> listaVeículos, String genero, String classeEconomica, String educacao,
-			LocalDate dataLicenca, String cpf , int dataNascimento) {
+			LocalDate dataLicenca, String cpf , String dataNascimento) {
 		super(nome, endereco, listaVeículos);
 		this.genero = genero;
 		this.classeEconomica = classeEconomica;
@@ -30,11 +30,11 @@ public class ClientePF extends Cliente{
 		this . cpf = cpf ;
 	}
 	
-	public int getDataNascimento () {
+	public String getDataNascimento () {
 		return dataNascimento ;
 	}
 	
-	public void setDataNascimento ( int dataNascimento ) {
+	public void setDataNascimento ( String dataNascimento ) {
 		this . dataNascimento = dataNascimento ;
 	}
 	
@@ -72,8 +72,8 @@ public class ClientePF extends Cliente{
 	
 	// Checagem de Dados
 	public String toString() {
-		return "ClientePF [Cpf: " + cpf + " /nDataNascimento: " + dataNascimento + " /nDataLicenca: " + dataLicenca
-				+ " /nEducacao: " + educacao + " /nGenero: " + genero + " /nClasseEconomica: " + classeEconomica + "]";
+		return "ClientePF \nCpf: " + cpf + " \nDataNascimento: " + dataNascimento + " \nDataLicenca: " + dataLicenca
+				+ " \nEducacao: " + educacao + " \nGenero: " + genero + " \nClasseEconomica: " + classeEconomica;
 	}
 	
 	// Validador de cpf

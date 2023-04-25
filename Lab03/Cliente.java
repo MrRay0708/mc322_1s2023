@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Cliente {
@@ -41,7 +40,7 @@ public class Cliente {
 	// Checagem de dados
 	public String toString () {
 		String dados = "" ;
-		dados += "Nome: " + getNome() + "\nGênero: " + getGenero() + "\nClasse econômica: " + getClasseEconomica() + "\nEndereço: " + getEndereco() + "\nData da licença: " + getDataLicenca() +  "\nEducação: " + getEducacao() ;
+		dados += "Nome: " + getNome() + "\nEndereço: " + getEndereco() +  "\nVeículos: " + getListaVeículos() ;
 		return dados ;
 	}
 	

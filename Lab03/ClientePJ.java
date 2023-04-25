@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 public class ClientePJ extends Cliente{
 	private String cnpj ;
-	private int dataFundacao ;
+	private String dataFundacao ;
 	
 	// Construtor
-	public ClientePJ(String nome, String endereco, ArrayList<Veículo> listaVeículos, String cnpj , int dataFundacao ) {
+	public ClientePJ(String nome, String endereco, ArrayList<Veículo> listaVeículos, String cnpj , String dataFundacao ) {
 		super(nome, endereco, listaVeículos);
 		this . cnpj = cnpj ;
 		this . dataFundacao = dataFundacao ;
@@ -20,11 +20,11 @@ public class ClientePJ extends Cliente{
 		this . cnpj = cnpj ;
 	}
 	
-	public int getDataFundacao () {
+	public String getDataFundacao () {
 		return dataFundacao ;
 	}
 	
-	public void setDataFundacao ( int dataFundacao ) {
+	public void setDataFundacao ( String dataFundacao ) {
 		this . dataFundacao = dataFundacao ;
 	}
 	
@@ -44,7 +44,7 @@ public class ClientePJ extends Cliente{
 		int somatorio = 0 ;
 		int contador = 0 ;
 		// Cálculo do primeiro digito
-		for ( int manipulador = 5 ; contador != 11 ; manipulador-- ) {
+		for ( int manipulador = 5 ; contador <= 11 ; manipulador-- ) {
 			if ( contador == 4 ) {
 				manipulador = 9 ;
 			}
@@ -67,7 +67,7 @@ public class ClientePJ extends Cliente{
 		// Cálculo do segundo digito
 		somatorio = 0 ;
 		contador = 0 ;
-		for ( int manipulador = 6 ; contador != 11 ; manipulador-- ) {
+		for ( int manipulador = 6 ; contador <= 12 ; manipulador-- ) {
 			if ( contador == 5 ) {
 				manipulador = 9 ;
 			}

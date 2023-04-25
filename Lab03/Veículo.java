@@ -6,10 +6,11 @@ public class Veículo {
 	private int anoFabricacao;
 	
 	// Construtor
-	public Veículo ( String placa, String marca, String modelo) {
+	public Veículo ( String placa, String marca, String modelo, int anoFabricacao) {
 		this . placa = placa;
 		this . marca = marca;
 		this . modelo = modelo;
+		this . anoFabricacao = anoFabricacao;
 	}
 	
 	// Getters e setters
