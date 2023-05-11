@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Cliente {
+public abstract class Cliente {
 	private String nome ;
 	private String endereco ;
 	private ArrayList<Veículo> listaVeículos ;
@@ -44,8 +44,23 @@ public class Cliente {
 		return dados ;
 	}
 	// Caculando score
-	public double calcularScore() {
-		return -1;
+	public abstract double calcularScore();
+	
+	// Listando Veículos
+	public String listarVeiculosCliente() {
+		for (int x=0; x<listaVeículos.size(); x++) {
+			listaVeículos.get(x).toString() ;
+		}
+	}
+	
+	// Removendo veículos
+	public boolean removerVeiculo (String placaCarro) {
+		for (int x=0; x<listaVeículos.size(); x++) {
+			if ( listaVeículos.get(x).getPlaca() == placaCarro ) {
+				listaVeículos.remove(x) ;
+			}
+		}
+		return true;
 	}
 	
 }

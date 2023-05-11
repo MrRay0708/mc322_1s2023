@@ -33,7 +33,7 @@ public class Main {
 		ClientePF cli1 = new ClientePF("Roberto Justus Segundo", "Rua Ben10", carrosCli1, "masculino", "classe alta", 
 										"superior", LocalDate.now(), "018.691.799-60", data ); // Builder PF
 			
-		System.out.println( cli1.validadorCpf( cli1.getCpf() ) ) ; // Validador PF
+		System.out.println( Validacao.validadorCpf( cli1.getCpf() ) ) ; // Validador PF
 		
 		cli1.setEndereco( "Rua Vilgax" ) ; // Setter PF
 		String ruinha = cli1.getEndereco() ; // Getter PF
@@ -45,7 +45,7 @@ public class Main {
 		carrosCli2.add(doblo);
 		ClientePJ cli2 = new ClientePJ("Mac Donalds", "Rua Batatinha", carrosCli2, "42.591.651/0001-43", "15/04/1995", 2 ); // Builder
 			
-		System.out.println( cli2.validadorCnpj( cli2.getCnpj() ) ) ; // Validador
+		System.out.println( Validacao.validadorCnpj( cli2.getCnpj() ) ) ; // Validador
 		
 		cli2.setEndereco( "Rua Nuggets" ) ; // Setter PJ
 		String ruinha2 = cli2.getEndereco() ; // Getter PJ
@@ -103,8 +103,9 @@ public class Main {
 				String eduTeste = scan.next();
 				String geneTeste = scan.next();
 				String classeTeste = scan.next();
+				LocalDate data2 = LocalDate.of(2002, 4, 16);
 				
-				ClientePF cliTeste = new ClientePF(nomeTeste, endeTeste, autoTeste, cpfTeste, dataTeste, eduTeste, LocalDate.now(), geneTeste, classeTeste);
+				ClientePF cliTeste = new ClientePF(nomeTeste, endeTeste, autoTeste, geneTeste, classeTeste, eduTeste, LocalDate.now(), cpfTeste, data2);
 				s1.cadastrarCliente(cliTeste);
 				System.out.println("Deseja realizar mais alguma ação ?");
 				ordem = scan.next();
