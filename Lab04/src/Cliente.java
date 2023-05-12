@@ -53,6 +53,12 @@ public abstract class Cliente {
 		}
 	}
 	
+	// Adicionando veículos
+	public boolean addVeiculo(Veículo carrin) {
+		listaVeículos.add(listaVeículos.size(), carrin);
+		return true;
+	}
+	
 	// Removendo veículos
 	public boolean removerVeiculo (String placaCarro) {
 		for (int x=0; x<listaVeículos.size(); x++) {

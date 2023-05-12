@@ -54,11 +54,14 @@ public class Main {
 		System.out.println( cli2.toString() ) ; // Dados PJ
 		
 		// Seguradora
+		ArrayList <Seguradora> listaSeguradoras = new ArrayList <Seguradora>();
 		ArrayList <Sinistro> listaSinistros = new ArrayList <Sinistro>() ;
 		ArrayList <Cliente> listaClientes = new ArrayList <Cliente>() ;
 		
 		Seguradora s1 = new Seguradora ( "Bom Seguros", "011958742000", "megatronterrivel@gmail.com", 
 											"Rua Segura", listaSinistros, listaClientes) ; // Builder
+		listaSeguradoras.add(s1);
+		
 		
 		s1.cadastrarCliente(cli1); // Cadastrar ClientePF
 		s1.cadastrarCliente(cli2); // Cadastrar ClientePJ
@@ -85,128 +88,280 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 		boolean continuar = true;
 		String ordem ;
-		do {
-			System.out.println("O que deseja fazer ? Essas são as opções: Cadastrar Cliente(PF ou PJ)\n Remover Cliente\n Gerar Sinistro\n "
-					+ "Listar Clientes\n Listar Sinistros\n Vizualizar Sinistro\n Encerrar\n");
-			ordem = scan.next();
-			switch(ordem) {
-			case("Cadastrar ClientePF"):
-				System.out.println("Insira os parâmetros [Nome, Endereço, Veículos, Cpf, Data de Nascimento, Educação,"
-						+ " Gênero e Classe Econômica]");
-				String nomeTeste = scan.next();
-				String endeTeste = scan.next();
-				ArrayList <Veículo> autoTeste = new ArrayList <Veículo>();
-				autoTeste.add(astra);
-				String cpfTeste = scan.next();
-				String dataTeste = scan.next();
-				// separa dataTeste e insere em nova data teste sendo LocalDate
-				String eduTeste = scan.next();
-				String geneTeste = scan.next();
-				String classeTeste = scan.next();
-				LocalDate data2 = LocalDate.of(2002, 4, 16);
-				
-				ClientePF cliTeste = new ClientePF(nomeTeste, endeTeste, autoTeste, geneTeste, classeTeste, eduTeste, LocalDate.now(), cpfTeste, data2);
-				s1.cadastrarCliente(cliTeste);
-				System.out.println("Deseja realizar mais alguma ação ?");
+			do {
+				System.out.println("MENU DE OPERAÇÕES:\n CADASTROS (1)\n LISTAR (2)\n EXCLUIR (3)\n "
+						+ "GERAR_SINISTRO (4)\n TRANSFERIR_SEGURO (5)\n CALCULAR_RECEITA (6)\n SAIR (0)\n");
 				ordem = scan.next();
-				switch (ordem) {
-				case("Não"):
-					System.out.println("Ok! Encerrando sessão");
-					continuar = false;
-				case("Sim"):
-					System.out.println("Ok! ");
+				switch(ordem) {
+					case("1"):
+						System.out.println("MENU DE CADASTROS:\n CADASTRAR_CLIENTE_PF_ou_PJ (1)\n CADASTRAR_VEICULO (2)\n CADASTRAR_SEGURADORA (3)\n VOLTAR (4)\n");
+						ordem = scan.next();
+						switch(ordem) {
+							case("1"):
+								System.out.println("PF ou PJ?\n");
+								ordem = scan.next();
+								switch(ordem) {
+									case("PF"):
+										System.out.println("Insira os parâmetros [Nome, Endereço, Veículos, Cpf, Data de Nascimento, Educação,"
+												+ " Gênero e Classe Econômica]");
+										String nomeTeste = scan.next();
+										String endeTeste = scan.next();
+										ArrayList <Veículo> autoTeste = new ArrayList <Veículo>();
+										autoTeste.add(astra);
+										String cpfTeste = scan.next();
+										String dataTeste = scan.next();
+										// separa dataTeste e insere em nova data teste sendo LocalDate
+										String eduTeste = scan.next();
+										String geneTeste = scan.next();
+										String classeTeste = scan.next();
+										LocalDate data2 = LocalDate.of(2002, 4, 16);
+										
+										ClientePF cliTeste = new ClientePF(nomeTeste, endeTeste, autoTeste, geneTeste, classeTeste, eduTeste, LocalDate.now(), cpfTeste, data2);
+										s1.cadastrarCliente(cliTeste);
+										System.out.println("Deseja realizar mais alguma ação ?");
+										ordem = scan.next();
+										switch (ordem) {
+										case("Não"):
+											System.out.println("Ok! Encerrando sessão");
+											continuar = false;
+										case("Sim"):
+											System.out.println("Ok! ");
+										}
+										
+									case("PJ"):
+										System.out.println("Insira os parâmetros [Nome, Endereço, Veículos, Cnpj e Data de Fundação]");
+										String nomeTeste2 = scan.next();
+										String endeTeste2 = scan.next();
+										ArrayList <Veículo> autoTeste2 = new ArrayList <Veículo>();
+										autoTeste2.add(palio);
+										String cnpjTeste = scan.next();
+										String fundTeste = scan.next();
+										
+										ClientePJ cliTeste2 = new ClientePJ(nomeTeste2, endeTeste2, autoTeste2, cnpjTeste, fundTeste, 3);
+										s1.cadastrarCliente(cliTeste2);
+										System.out.println("Deseja realizar mais alguma ação ?");
+										ordem = scan.next();
+										switch (ordem) {
+										case("Não"):
+											System.out.println("Ok! Encerrando sessão");
+											continuar = false;
+										case("Sim"):
+											System.out.println("Ok! ");
+										}
+								}
+								
+							case("2"):
+								System.out.println("Insira os parâmetros [Placa, Marca, Modelo, Ano de fabricação, Dono]");
+								String placaTeste = scan.next();
+								String marcaTeste = scan.next();
+								String modeloTeste = scan.next();
+								int anoTeste = scan.nextInt();
+								String dono = scan.next();
+								Veículo carro = new Veículo ( placaTeste, marcaTeste, modeloTeste, anoTeste) ;
+								s1.addVeiculo(dono, carro);
+								System.out.println("Deseja realizar mais alguma ação ?");
+								ordem = scan.next();
+								switch (ordem) {
+								case("Não"):
+									System.out.println("Ok! Encerrando sessão");
+									continuar = false;
+								case("Sim"):
+									System.out.println("Ok! ");
+								}
+								
+							case("3"):
+								System.out.println("Insira os parâmetros [Nome, Telefone, Email, Endereço]");
+								String nomeTeste = scan.next();
+								String telTeste = scan.next();
+								String emailTeste = scan.next();
+								String endeTeste = scan.next();
+								listaSeguradoras.add(new Seguradora ( nomeTeste, telTeste,  emailTeste, 
+										endeTeste, new ArrayList <Sinistro>(), new ArrayList <Cliente>()) );
+								System.out.println("Deseja realizar mais alguma ação ?");
+								ordem = scan.next();
+								switch (ordem) {
+								case("Não"):
+									System.out.println("Ok! Encerrando sessão");
+									continuar = false;
+								case("Sim"):
+									System.out.println("Ok! ");
+								}
+								
+							case("4"):
+								continue;
+						}
+						
+					case("2"):
+						System.out.println("MENU DE CADASTROS:\n LISTAR_CLIENTE_PF_ou_PJ_POR_SEGURADORA (1)\n LISTAR_SINISTROS_POR_SEGURADORA (2)\n LISTAR_VEICULO_POR_SEGURADORA (3)\n "
+								+ "LISTAR_SINISTRO_POR_CLIENTE (4)\n LISTAR_VEICULO_POR_CLIENTE (5)\n VOLTAR (6)\n");
+						ordem = scan.next();
+						switch(ordem) {
+							case("1"):
+								s1.listarClientes();
+								System.out.println("Deseja realizar mais alguma ação ?");
+								ordem = scan.next();
+								switch (ordem) {
+								case("Não"):
+									System.out.println("Ok! Encerrando sessão");
+									continuar = false;
+								case("Sim"):
+									System.out.println("Ok! ");
+								}
+								
+							case("2"):
+								s1.listarSinistros();
+								System.out.println("Deseja realizar mais alguma ação ?");
+								ordem = scan.next();
+								switch (ordem) {
+								case("Não"):
+									System.out.println("Ok! Encerrando sessão");
+									continuar = false;
+								case("Sim"):
+									System.out.println("Ok! ");
+								}
+								
+							case("3"):
+								s1.listarVeiculos();
+								System.out.println("Deseja realizar mais alguma ação ?");
+								ordem = scan.next();
+								switch (ordem) {
+								case("Não"):
+									System.out.println("Ok! Encerrando sessão");
+									continuar = false;
+								case("Sim"):
+									System.out.println("Ok! ");
+								}
+								
+							case("4"):
+								String nomecli;
+								System.out.println("Insira o nome do cliente");
+								nomecli = scan.next();
+								s1.listarSinistroCliente(nomecli);
+								System.out.println("Deseja realizar mais alguma ação ?");
+								ordem = scan.next();
+								switch (ordem) {
+								case("Não"):
+									System.out.println("Ok! Encerrando sessão");
+									continuar = false;
+								case("Sim"):
+									System.out.println("Ok! ");
+								}
+								
+							case("5"):
+								String nomecli1;
+								System.out.println("Insira o nome do cliente");
+								nomecli1 = scan.next();
+								s1.listarVeiculosCliente(nomecli1);
+								System.out.println("Deseja realizar mais alguma ação ?");
+								ordem = scan.next();
+								switch (ordem) {
+								case("Não"):
+									System.out.println("Ok! Encerrando sessão");
+									continuar = false;
+								case("Sim"):
+									System.out.println("Ok! ");
+								}
+							
+							case("6"):
+								continue;
+						}
+						
+					case("3"):
+						System.out.println("MENU DE CADASTROS:\n EXCLUIR_CLIENTE (1)\n EXCLUIR_VEICULO (2)\n EXCLUIR_SINISTRO (3)\n VOLTAR (4)\n");
+						ordem = scan.next();
+						switch(ordem) {
+							case("1"):
+								System.out.println("Insira os parâmetros [Nome do Cliente]");
+								String removido = scan.next();
+								s1.removerCliente(removido);
+								System.out.println("Deseja realizar mais alguma ação ?");
+								ordem = scan.next();
+								switch (ordem) {
+								case("Não"):
+									System.out.println("Ok! Encerrando sessão");
+									continuar = false;
+								case("Sim"):
+									System.out.println("Ok! ");
+								}
+								
+							case("2"):
+								System.out.println("Insira os parâmetros [Nome do Cliente, Placa do veículo]");
+								String placaTeste = scan.next();
+								String dono = scan.next();
+								s1.removerVeiculo(dono, placaTeste);
+								System.out.println("Deseja realizar mais alguma ação ?");
+								ordem = scan.next();
+								switch (ordem) {
+								case("Não"):
+									System.out.println("Ok! Encerrando sessão");
+									continuar = false;
+								case("Sim"):
+									System.out.println("Ok! ");
+								}
+							
+							case("3"):
+								System.out.println("Insira os parâmetros [Id do Sinistro]");
+								int id = scan.nextInt();
+								s1.removerSinistro(id);
+								System.out.println("Deseja realizar mais alguma ação ?");
+								ordem = scan.next();
+								switch (ordem) {
+								case("Não"):
+									System.out.println("Ok! Encerrando sessão");
+									continuar = false;
+								case("Sim"):
+									System.out.println("Ok! ");
+								}
+							
+							case("4"):
+								continue;
+						}
+						
+					case("4"):
+						System.out.println("Insira os parâmetros [Nome do Cliente e Veículo]"); // Considerei o Cliente e Veículo já registrado no sistema 
+						s1.gerarSinistro(cli1, astra);
+						System.out.println("Deseja realizar mais alguma ação ?");
+						ordem = scan.next();
+						switch (ordem) {
+						case("Não"):
+							System.out.println("Ok! Encerrando sessão");
+							continuar = false;
+						case("Sim"):
+							System.out.println("Ok! ");
+						}
+						
+					case("5"):
+						// recebo cliente
+						System.out.println("Insira os parâmetros [Nome do Cliente, Nome do Destinatário]");
+						String cliTeste = scan.next();
+						String destTeste = scan.next();
+						s1.tranferencia(cliTeste, destTeste);
+						System.out.println("Deseja realizar mais alguma ação ?");
+						ordem = scan.next();
+						switch (ordem) {
+						case("Não"):
+							System.out.println("Ok! Encerrando sessão");
+							continuar = false;
+						case("Sim"):
+							System.out.println("Ok! ");
+							
+					case("6"):
+						System.out.println("Receita da Seguradora: " + s1.calcularReceita()) ;
+						System.out.println("Deseja realizar mais alguma ação ?");
+						ordem = scan.next();
+						switch (ordem) {
+						case("Não"):
+							System.out.println("Ok! Encerrando sessão");
+							continuar = false;
+						case("Sim"):
+							System.out.println("Ok! ");
+						}
+						
+					case("0"):
+						System.out.println("Encerrando sessão");
+						continuar = false;
 				}
-				
-			case("Cadastrar ClientePJ"):
-				System.out.println("Insira os parâmetros [Nome, Endereço, Veículos, Cnpj e Data de Fundação]");
-				String nomeTeste2 = scan.next();
-				String endeTeste2 = scan.next();
-				ArrayList <Veículo> autoTeste2 = new ArrayList <Veículo>();
-				autoTeste2.add(palio);
-				String cnpjTeste = scan.next();
-				String fundTeste = scan.next();
-				
-				ClientePJ cliTeste2 = new ClientePJ(nomeTeste2, endeTeste2, autoTeste2, cnpjTeste, fundTeste, 3);
-				s1.cadastrarCliente(cliTeste2);
-				System.out.println("Deseja realizar mais alguma ação ?");
-				ordem = scan.next();
-				switch (ordem) {
-				case("Não"):
-					System.out.println("Ok! Encerrando sessão");
-					continuar = false;
-				case("Sim"):
-					System.out.println("Ok! ");
-				}
-				
-			case("Remover Cliente"):
-				System.out.println("Insira os parâmetros [Nome do Cliente]");
-				String removido = scan.next();
-				s1.removerCliente(removido);
-				System.out.println("Deseja realizar mais alguma ação ?");
-				ordem = scan.next();
-				switch (ordem) {
-				case("Não"):
-					System.out.println("Ok! Encerrando sessão");
-					continuar = false;
-				case("Sim"):
-					System.out.println("Ok! ");
-				}
-				
-			case("Gerar Sinistro"):
-				System.out.println("Insira os parâmetros [Nome do Cliente e Veículo]"); // Considerei o Cliente e Veículo já registrado no sistema 
-				s1.gerarSinistro(cli1, astra);
-				System.out.println("Deseja realizar mais alguma ação ?");
-				ordem = scan.next();
-				switch (ordem) {
-				case("Não"):
-					System.out.println("Ok! Encerrando sessão");
-					continuar = false;
-				case("Sim"):
-					System.out.println("Ok! ");
-				}
-				
-			case("Listar Clientes"):
-				s1.listarClientes();
-				System.out.println("Deseja realizar mais alguma ação ?");
-				ordem = scan.next();
-				switch (ordem) {
-				case("Não"):
-					System.out.println("Ok! Encerrando sessão");
-					continuar = false;
-				case("Sim"):
-					System.out.println("Ok! ");
-				}
-				
-			case("Listar Sinistros"):
-				s1.listarSinistros();
-				System.out.println("Deseja realizar mais alguma ação ?");
-				ordem = scan.next();
-				switch (ordem) {
-				case("Não"):
-					System.out.println("Ok! Encerrando sessão");
-					continuar = false;
-				case("Sim"):
-					System.out.println("Ok! ");
-				}
-			
-			case("Vizualizar Sinistro"):
-				System.out.println("Insira os parâmetros [PF ou PJ]");
-				String tipo = scan.next();
-				s1.vizualizarSinistro(tipo);
-				System.out.println("Deseja realizar mais alguma ação ?");
-				ordem = scan.next();
-				switch (ordem) {
-				case("Não"):
-					System.out.println("Ok! Encerrando sessão");
-					continuar = false;
-				case("Sim"):
-					System.out.println("Ok! ");
-				}
-			
-			case("Encerrar"):
-				System.out.println("Encerrando sessão");
-				continuar = false;
 			}
 		} while (continuar);
 	}
-}
+}	

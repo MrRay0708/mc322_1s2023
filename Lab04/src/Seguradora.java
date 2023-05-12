@@ -72,14 +72,14 @@ public class Seguradora {
 		}
 	
 	// Cadastro de Clientes 
-		public boolean cadastrarCliente (Cliente cliente) {
+		public boolean cadastrarCliente ( Cliente cliente ) {
 			listaClientes.add(cliente);
 			calcularPrecoSeguroCliente(cliente);
 			return true;
 		}
 	
 	// Remoção de Clientes
-		public boolean removerCliente (String cliente) {
+		public boolean removerCliente ( String cliente ) {
 			for (int x=0; x<listaClientes.size(); x++) {
 				if (listaClientes.get(x).getNome() == cliente) {
 					listaClientes.remove(x);
@@ -95,7 +95,7 @@ public class Seguradora {
 		}
 		
 	// Remoção de Sinistro
-		boolean removerSinistro (int idSinistro) {
+		boolean removerSinistro ( int idSinistro ) {
 			for (int x=0; x<listaSinistros.size(); x++) {
 				if (listaSinistros.get(x).getId() == idSinistro) {
 					listaSinistros.remove(x);
@@ -104,7 +104,7 @@ public class Seguradora {
 		}
 		
 	// Gerador de Sinistro
-		public boolean gerarSinistro(Cliente cliente, Veículo carro) {
+		public boolean gerarSinistro( Cliente cliente, Veículo carro ) {
 			Sinistro novoSinistro = new Sinistro(buildId(), LocalDate.now(), endereco, Seguradora.this, carro, cliente) ;
 			listaSinistros.add(novoSinistro);
 			return true;
@@ -117,7 +117,7 @@ public class Seguradora {
 		}
 	
 	// Vizualição de Sinistros
-		public boolean vizualizarSinistro(String tipoCliente) {
+		public boolean vizualizarSinistro( String tipoCliente ) {
 			
 			if (tipoCliente == "PF") {
 				for (int x=0; x<listaSinistros.size(); x++) {
@@ -171,11 +171,11 @@ public class Seguradora {
 		}
 		
 	// Listando Sinistros pelo cliente
-		public String listarSinistroCliente(Cliente cli) {
+		public String listarSinistroCliente( String nomecli ) {
 			String bigstring = new String();
 			if (!listaSinistros.isEmpty()) {
 				for (int x=0; x<listaSinistros.size(); x++) {
-					if (listaSinistros.get(x).getCliente().getNome() == cli.getNome()) {
+					if (listaSinistros.get(x).getCliente().getNome() == nomecli) {
 						listaSinistros.get(x).toString();
 					}
 				}
@@ -183,6 +183,19 @@ public class Seguradora {
 			return "Não há Sinistros!";
 		}
 		
+	// Listando Veículos pelo cliente
+			public String listarVeiculosCliente( String nomecli ) {
+				String bigstring = new String();
+				if (!listaClientes.isEmpty()) {
+					for (int x=0; x<listaClientes.size(); x++) {
+						if (listaClientes.get(x).getNome() == nomecli) {
+							listaClientes.get(x).listarVeiculosCliente();
+						}
+					}
+				}
+				return "Não há este CLiente!";
+			}	
+	
 	// Listando Clientes
 		public String listarClientes() {
 			String bigstring = new String();
@@ -199,6 +212,32 @@ public class Seguradora {
 			}
 			return "Não há Clientes!";
 		}
+		
+	// Adicionar Veiculo no Cliente
+		public String addVeiculo( String nomecli, Veículo carrin ) {
+			String bigstring = new String();
+			if (!listaClientes.isEmpty()) {
+				for (int x=0; x<listaClientes.size(); x++) {
+					if (listaClientes.get(x).getNome() == nomecli) {
+						listaClientes.get(x).addVeiculo(carrin) ;
+					}
+				}
+			}
+			return "Não há este CLiente!";
+		}
+		
+	// Remover Veiculo no Cliente
+			public String removerVeiculo( String nomecli, String placa ) {
+				String bigstring = new String();
+				if (!listaClientes.isEmpty()) {
+					for (int x=0; x<listaClientes.size(); x++) {
+						if (listaClientes.get(x).getNome() == nomecli) {
+							listaClientes.get(x).removerVeiculo(placa) ;
+						}
+					}
+				}
+				return "Não há este Cliente!";
+			}
 		
 	// Calculando Preço
 		public double calcularPrecoSeguroCliente( Cliente cliente ) {
@@ -222,6 +261,26 @@ public class Seguradora {
 				}
 			}
 			return receita;
+		}
+		
+	// Transfência de Seguro
+		public String tranferencia( String cliente, String destinatario ) {
+			int indice_1 = 0;
+			int indice_2 = 0;
+			String bigstring = new String();
+			if (!listaClientes.isEmpty()) {
+				for (int x=0; x<listaClientes.size(); x++) {
+					if (listaClientes.get(x).getNome() == cliente) {
+						indice_1 = x;
+					}
+					else if (listaClientes.get(x).getNome() == destinatario) {
+						indice_2 = x;
+					}
+				}
+				listaClientes.get(indice_2).getListaVeículos().addAll(listaClientes.get(indice_1).getListaVeículos());
+				removerCliente( cliente );
+			}
+			return "Não há este Cliente!";
 		}
 
 	// Checagem de Dados
