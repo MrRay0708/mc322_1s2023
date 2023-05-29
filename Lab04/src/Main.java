@@ -89,6 +89,7 @@ public class Main {
 		boolean continuar = true;
 		String ordem ;
 			do {
+				ordem = "";
 				System.out.println("MENU DE OPERAÇÕES:\n CADASTROS (1)\n LISTAR (2)\n EXCLUIR (3)\n "
 						+ "GERAR_SINISTRO (4)\n TRANSFERIR_SEGURO (5)\n CALCULAR_RECEITA (6)\n SAIR (0)\n");
 				ordem = scan.next();
@@ -344,6 +345,7 @@ public class Main {
 							continuar = false;
 						case("Sim"):
 							System.out.println("Ok! ");
+						}
 							
 					case("6"):
 						System.out.println("Receita da Seguradora: " + s1.calcularReceita()) ;
@@ -361,7 +363,6 @@ public class Main {
 						System.out.println("Encerrando sessão");
 						continuar = false;
 				}
-			}
-		} while (continuar);
+			} while (continuar);
+		}
 	}
-}	

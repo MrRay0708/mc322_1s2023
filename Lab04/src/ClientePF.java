@@ -79,7 +79,7 @@ public class ClientePF extends Cliente{
 	
 	// Caculando score
 	public double calcularScore() {
-		CalcSeguro fator;
+		CalcSeguro fator = null;
 		CalcSeguro base = CalcSeguro.VALOR_BASE;
 		LocalDate hoje = LocalDate.now();
 		int idade = Period.between(dataNascimento, hoje).getYears();

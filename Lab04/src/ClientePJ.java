@@ -48,7 +48,7 @@ public class ClientePJ extends Cliente{
 	// Caculando score
 	public double calcularScore() {
 		CalcSeguro base = CalcSeguro.VALOR_BASE;
-		( 1 + (this.quantFunc) / 100 ) * getListaVeículos().size() * base.getVariavel(); 
+		return ( 1 + quantFunc / 100 ) * getListaVeículos().size() * base.getVariavel(); 
 	}
 	
 	// Listar Sinistros
